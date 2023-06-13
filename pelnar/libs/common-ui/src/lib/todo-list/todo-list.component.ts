@@ -46,7 +46,7 @@ import { FilterTodosPipe, todoFilterType } from '../filter-todos.pipe';
     MatCheckboxModule,
     TodoItemComponent,
     TodoEditorComponent,
-    FilterTodosPipe]
+    FilterTodosPipe,]
 
 })
 export class TodoListComponent implements OnInit {
@@ -55,7 +55,9 @@ export class TodoListComponent implements OnInit {
 
   public todoFilter: todoFilterType = todoFilterType.incomplete;
 
-  public todoFilterTypeValues = todoFilterType;
+  public all = todoFilterType.all;
+  public incomplete = todoFilterType.incomplete;
+  public complete = todoFilterType.completed;
 
   constructor(private store: Store<TodoState>) {
     this.todos$ = this.store.select(selectAllTodo);
