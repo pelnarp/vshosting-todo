@@ -7,8 +7,6 @@ export const selectTodoState =
 
 const { selectAll, selectEntities } = todoAdapter.getSelectors();
 
-console.log('asdasd');
-
 export const selectTodoLoaded = createSelector(
   selectTodoState,
   (state: TodoState) => state.loaded

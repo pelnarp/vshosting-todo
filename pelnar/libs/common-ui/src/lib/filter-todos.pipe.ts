@@ -3,7 +3,6 @@ import { TodoEntity } from '@pelnar/model';
 
 @Pipe({
   name: 'filterTodos',
-  standalone: true,
 })
 export class FilterTodosPipe implements PipeTransform {
   transform(list: TodoEntity[] | null, filter: todoFilterType): TodoEntity[] | null {

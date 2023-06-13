@@ -3,6 +3,7 @@ import { createEffect, Actions, ofType } from '@ngrx/effects';
 import { switchMap, catchError, of, map } from 'rxjs';
 import * as TodoActions from './todo.actions';
 import { TodoService } from '@pelnar/bll';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Injectable()
 export class TodoEffects {
@@ -41,7 +42,10 @@ export class TodoEffects {
   updateSuccess$ = createEffect(() =>
     this.actions$.pipe(
       ofType(TodoActions.updateSuccess),
-      map(() => { // TODO: snack 
+      map(() => {
+        this.snackBar.open('Item was updated', 'X', {
+          duration: 3000,
+        });
       })
     ), { dispatch: false }
   );
@@ -61,15 +65,43 @@ export class TodoEffects {
     )
   );
 
-  reateSuccess$ = createEffect(() =>
+  createSuccess$ = createEffect(() =>
     this.actions$.pipe(
       ofType(TodoActions.createSuccess),
-      map(() => { // TODO: snack 
+      map(() => {
+        this.snackBar.open('Item was created', 'X', {
+          duration: 3000,
+        });
       })
     ), { dispatch: false }
   );
 
+  delete$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(TodoActions.deleteSingle),
+      switchMap((action) =>
+        this.todoService.delete(action.id).pipe(
+          map((id) => TodoActions.deleteSuccess({ id: action.id })),
+        )
+      ),
+      catchError((error) => {
+        console.error('Error', error);
+        return of(TodoActions.createFailure({ error }));
+      })
+    )
+  );
 
-  constructor(private readonly todoService: TodoService) {
-  }
+  deleteSuccess$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(TodoActions.deleteSuccess),
+      map(() => {
+        this.snackBar.open('Item was deleted', 'X', {
+          duration: 3000,
+        });
+      })
+    ), { dispatch: false }
+  );
+
+  private todoService = inject(TodoService);
+  private snackBar = inject(MatSnackBar); // This could go into dedicated wrapped notificaiton service, but I keep it directly here for simplicity
 }

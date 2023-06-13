@@ -40,7 +40,7 @@ export class TodoService {
     return this.httpClient.put(`${this.baseUrl}/${entity.id}`, data);
   }
 
-  public delete(entity: TodoEntity): Observable<any> {
-    return this.httpClient.delete(`${this.baseUrl}/${entity.id}`);
+  public delete(id: number): Observable<any> {
+    return this.httpClient.delete(`${this.baseUrl}/${id}`);
   }
 }

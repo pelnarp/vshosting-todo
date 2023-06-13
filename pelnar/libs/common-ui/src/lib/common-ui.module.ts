@@ -1,7 +1,5 @@
 import { NgModule } from '@angular/core';
-import {
-  TodoListComponent,
-} from './todo-list/todo-list.component';
+import { TodoListComponent } from './todo-list/todo-list.component';
 import { CommonModule } from '@angular/common';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { FlexLayoutModule } from '@angular/flex-layout';
@@ -20,9 +18,15 @@ import { TodoItemComponent } from './todo-item/todo-item.component';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { TodoEditorComponent } from './todo-editor/todo-editor.component';
 import { FilterTodosPipe } from './filter-todos.pipe';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatButtonToggleModule } from '@angular/material/button-toggle';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   imports: [
+    MatSnackBarModule,
+    CommonModule,
     FlexLayoutModule,
     MatInputModule,
     MatCardModule,
@@ -35,16 +39,14 @@ import { FilterTodosPipe } from './filter-todos.pipe';
     MatMenuModule,
     MatTableModule,
     MatSelectModule,
-    TodoListComponent,
-    CommonModule,
     MatSlideToggleModule,
+    MatButtonToggleModule,
     MatCheckboxModule,
-    TodoItemComponent,
-    TodoEditorComponent,
-    FilterTodosPipe
+    MatFormFieldModule, 
+    ReactiveFormsModule
   ],
 
-  declarations: [],
+  declarations: [TodoListComponent, TodoItemComponent, TodoEditorComponent, FilterTodosPipe],
   exports: [
     TodoListComponent,
     CommonModule,
@@ -64,7 +66,7 @@ import { FilterTodosPipe } from './filter-todos.pipe';
     TodoItemComponent,
     MatCheckboxModule,
     TodoEditorComponent,
-    FilterTodosPipe
+    FilterTodosPipe,
   ],
 })
-export class CommonUiModule {}
+export class CommonUiModule { }

@@ -13,12 +13,13 @@ import { HttpClientModule } from '@angular/common/http';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { CommonUiModule} from '@pelnar/common-ui';
 
 @NgModule({
   declarations: [AppComponent, TodoMainComponent],
   imports: [
     CommonModule,
-    BrowserModule,
+    
     BrowserAnimationsModule,
     RouterModule.forRoot(appRoutes, { initialNavigation: 'enabledBlocking' }),
     StoreModule.forRoot(
@@ -35,7 +36,8 @@ import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
     StoreRouterConnectingModule.forRoot(),
     pelnarStoreModule,
     HttpClientModule,
-    MatSlideToggleModule
+    MatSlideToggleModule,
+    CommonUiModule
   ],
   providers: [],
   bootstrap: [AppComponent],

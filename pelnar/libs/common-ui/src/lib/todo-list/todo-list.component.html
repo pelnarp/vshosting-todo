@@ -14,6 +14,8 @@
             <mat-button-toggle value="incomplete" [checked]="true">Incomplete</mat-button-toggle>
         </mat-button-toggle-group>
 
+        Completed: {{(todos$ | async | filterTodos : complete)?.length ?? 0}} / Incomplete: {{(todos$ | async | filterTodos : incomplete)?.length ?? 0}}
+
         <mat-list *ngIf="todosLoaded$ | async">
             <pelnar-todo-item *ngFor="let todo of todos$ | async | filterTodos : todoFilter" [todo]="todo">
             </pelnar-todo-item>

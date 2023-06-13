@@ -41,6 +41,9 @@ const reducer = createReducer(
   on(TodoActions.createSuccess, (state, { todo }) =>
     todoAdapter.addOne(todo, { ...state, loaded: true })
   ),
+  on(TodoActions.deleteSuccess, (state, { id }) =>
+    todoAdapter.removeOne(id, { ...state, loaded: true })
+  ),
 
 );
 
