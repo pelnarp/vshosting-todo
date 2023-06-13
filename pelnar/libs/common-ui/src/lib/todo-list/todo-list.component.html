@@ -1,6 +1,22 @@
-<p>todo-list works2!</p>
+<mat-spinner *ngIf="!(todosLoaded$ | async)"></mat-spinner>
 
-{{todosLoaded$ | async}}
-{{(todos$ | async)?.length}}
+<div class="todo-container">
+    <mat-card>
+        <mat-card-content>
+            <pelnar-todo-editor>
+            </pelnar-todo-editor>
+        </mat-card-content>
+    </mat-card>
 
-<button (click)="test()">Button</button>
+    <div class="list-container">
+        <mat-button-toggle-group (change)="filterChange($event)">
+            <mat-button-toggle value="all">All</mat-button-toggle>
+            <mat-button-toggle value="incomplete" [checked]="true">Incomplete</mat-button-toggle>
+        </mat-button-toggle-group>
+
+        <mat-list *ngIf="todosLoaded$ | async">
+            <pelnar-todo-item *ngFor="let todo of todos$ | async | filterTodos : todoFilter" [todo]="todo">
+            </pelnar-todo-item>
+        </mat-list>
+    </div>
+</div>

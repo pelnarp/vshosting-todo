@@ -1,0 +1,13 @@
+<mat-list-item [class.complete]="todo?.completed" *ngIf="!editing">
+    <mat-checkbox [checked]="todo?.completed" (change)="checkChange($event)"></mat-checkbox>
+    <span (click)="edit()" class="editable">
+        {{ todo.text }}
+    </span>
+</mat-list-item>
+<div *ngIf="editing" class="editor">
+<mat-card >
+    <mat-card-header>Edit ToDO</mat-card-header>
+    <mat-card-content> <pelnar-todo-editor [todo]="todo" (done)="onDone()">
+        </pelnar-todo-editor></mat-card-content>
+</mat-card>
+</div>

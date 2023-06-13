@@ -34,7 +34,14 @@ const reducer = createReducer(
   on(TodoActions.loadTodoSuccess, (state, { todo }) =>
     todoAdapter.setAll(todo, { ...state, loaded: true })
   ),
-  on(TodoActions.loadTodoFailure, (state, { error }) => ({ ...state, error }))
+  on(TodoActions.loadTodoFailure, (state, { error }) => ({ ...state, error })),
+  on(TodoActions.updateSuccess, (state, { todo }) =>
+    todoAdapter.setOne(todo, { ...state, loaded: true })
+  ),
+  on(TodoActions.createSuccess, (state, { todo }) =>
+    todoAdapter.addOne(todo, { ...state, loaded: true })
+  ),
+
 );
 
 export function todoReducer(state: TodoState | undefined, action: Action) {

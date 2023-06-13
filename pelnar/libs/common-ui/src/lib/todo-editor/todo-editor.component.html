@@ -1,0 +1,8 @@
+<mat-form-field class="w-100">
+    <input matInput placeholder="Create new TODO" [value]="text" [formControl]="text" required>
+</mat-form-field>
+<div>
+    <button mat-raised-button color="accent" (click)="save()" type="button">Save</button>
+    <button mat-raised-button (click)="done.next(null)" type="button" *ngIf="todo?.id">Cancel</button>
+    <button mat-raised-button (click)="delete()" type="button" *ngIf="todo?.id">Delete</button>
+</div>

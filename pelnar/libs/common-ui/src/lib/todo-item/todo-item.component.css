@@ -1,0 +1,11 @@
+.complete {
+    text-decoration: line-through;
+}
+
+.editable {
+    cursor:text;
+}
+
+.editor{
+    margin-bottom: 5px;;
+}
