@@ -1,5 +1,6 @@
 export interface TodoEntity {
-    id: string | number;
-    text: string;
+    id: number;
     completed: boolean;
+    text: string;
+    clientId: string;
 }

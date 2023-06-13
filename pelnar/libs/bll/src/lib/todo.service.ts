@@ -9,13 +9,15 @@ import { Observable, of } from 'rxjs';
 })
 export class TodoService {
   private readonly baseUrl: string;
+  private readonly clientId: string;
 
   constructor(protected httpClient: HttpClient) {
-    this.baseUrl = environment.todoApiUrl;
+    this.baseUrl = environment.todoApiUrl + '/todos';
+    this.clientId = environment.clientId;
   }
 
-  public all(): Observable<TodoEntity[]>  {
-    return of([]);
-    //return this.httpClient.get<TodoEntity[]>(`${this.baseUrl}`);
+  public all(): Observable<TodoEntity[]> {
+    //return of([]);
+    return this.httpClient.get<TodoEntity[]>(`${this.baseUrl}`, { params: { clientId: this.clientId } });
   }
 }

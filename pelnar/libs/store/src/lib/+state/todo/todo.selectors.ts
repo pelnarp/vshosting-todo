@@ -1,14 +1,13 @@
 import { createFeatureSelector, createSelector } from '@ngrx/store';
 import { TODO_FEATURE_KEY, TodoState, todoAdapter } from './todo.reducer';
-import { TodoEntity } from '@pelnar/model';
-import { Observable } from 'rxjs';
-import { EntityState } from '@ngrx/entity';
 
 // Lookup the 'Todo' feature state managed by NgRx
 export const selectTodoState =
   createFeatureSelector<TodoState>(TODO_FEATURE_KEY);
 
 const { selectAll, selectEntities } = todoAdapter.getSelectors();
+
+console.log('asdasd');
 
 export const selectTodoLoaded = createSelector(
   selectTodoState,
