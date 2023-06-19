@@ -1,5 +1,5 @@
-<mat-list-item [class.complete]="todo?.completed" *ngIf="!editing">
-    <mat-checkbox [checked]="todo?.completed" (change)="checkChange($event)"></mat-checkbox>
+<mat-list-item [class.complete]="todo.completed" *ngIf="!editing">
+    <mat-checkbox [checked]="todo.completed" (change)="checkChange($event)"></mat-checkbox>
     <span (click)="edit()" class="editable">
         {{ todo.text }}
     </span>
